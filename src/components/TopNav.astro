@@ -1,0 +1,169 @@
+---
+import Icon from './Icon.astro';
+import { CITIES } from '../data/services';
+---
+
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-colors duration-300 shadow-xs" id="main-header">
+  <!-- Top Utility Bar: Device Toggle & ReachX Banner -->
+  <div class="bg-slate-900 text-slate-300 text-[11px] px-4 py-1 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="font-medium tracking-wide">A REACHX GROUP UNIT</span>
+      <span class="text-slate-500 hidden sm:inline">|</span>
+      <span class="text-slate-400 hidden sm:inline">⚡ 48H Instant Digital Delivery</span>
+    </div>
+    
+    <div class="flex items-center gap-3">
+      <!-- Phone View vs Desktop View Toggle -->
+      <button 
+        id="toggle-view-mode" 
+        class="flex items-center gap-1.5 px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-white transition text-[11px] font-medium border border-slate-700"
+        title="Toggle between Phone Mockup and Full Width"
+      >
+        <span id="view-mode-icon">📱</span>
+        <span id="view-mode-text">Phone View</span>
+      </button>
+      
+      <a href="https://wa.me/919876543210?text=Hello%20QuickyIT%20Team,%20I%20need%20assistance." target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 flex items-center gap-1 transition">
+        <Icon name="whatsapp" class="w-3 h-3 text-emerald-400" />
+        <span class="hidden md:inline font-medium">WhatsApp Help</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Primary Top Bar (As per Wireframe: Location on Left, Free Consultancy & Profile on Right) -->
+  <div class="max-w-7xl mx-auto px-3.5 py-2.5 sm:px-6">
+    <div class="flex items-center justify-between gap-2 sm:gap-4">
+      
+      <!-- Top Left: Location / City Select (Blinkit style) -->
+      <button 
+        id="open-city-modal" 
+        class="group flex items-center gap-2 text-left focus:outline-none focus:ring-2 focus:ring-emerald-500/30 rounded-xl p-1 -ml-1 transition hover:bg-slate-50"
+        aria-label="Select delivery city"
+      >
+        <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-100 transition shadow-xs border border-emerald-100">
+          <Icon name="map-pin" class="w-5 h-5 text-emerald-600 animate-bounce" />
+        </div>
+        <div>
+          <div class="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+            <span>Services at</span>
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          </div>
+          <div class="flex items-center gap-1 text-sm sm:text-base font-bold text-slate-800 leading-tight">
+            <span id="active-city-display">Kolkata</span>
+            <Icon name="chevron-down" class="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-700 transition" />
+          </div>
+        </div>
+      </button>
+
+      <!-- Center Logo / Brand Header -->
+      <div class="flex items-center gap-2 cursor-pointer" id="brand-logo-trigger">
+        <div class="quickyit-logo-wrap flex items-center gap-2">
+          <img src="/logo2 transparent.png" alt="QuickyIT" class="h-8 sm:h-9 w-auto object-contain drop-shadow-sm" />
+          <div class="hidden xs:block">
+            <div class="flex items-center">
+              <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight text-emerald-600">Quicky</span>
+              <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight text-blue-600">IT</span>
+            </div>
+            <p class="text-[9px] font-semibold uppercase tracking-widest text-slate-500 -mt-1">Fast Digital Services</p>
+          </div>
+        </div>
+
+        <div class="tanzzzx-logo-wrap hidden items-center gap-2">
+          <img src="/brand name text.png" alt="Tanzzzx Studio" class="h-6 sm:h-7 w-auto object-contain filter invert brightness-0" />
+          <span class="text-[10px] font-bold uppercase tracking-wider bg-amber-500/10 text-amber-600 px-1.5 py-0.5 rounded border border-amber-500/20">3D Real Estate</span>
+        </div>
+      </div>
+
+      <!-- Top Right: Schedule Free Consultancy Button + Profile -->
+      <div class="flex items-center gap-1.5 sm:gap-2.5">
+        <!-- Free Consultancy (Schedule Now) Button -->
+        <button 
+          id="open-consultancy-modal" 
+          class="relative inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white shadow-md shadow-emerald-500/20 hover:shadow-emerald-500/30 active:scale-95 transition-all"
+        >
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+          </span>
+          <Icon name="calendar" class="w-4 h-4" />
+          <span class="whitespace-nowrap">Free Consultancy</span>
+          <span class="hidden md:inline-block bg-white/20 text-[10px] px-1.5 py-0.5 rounded font-extrabold">Schedule</span>
+        </button>
+
+        <!-- Profile Icon Button -->
+        <button 
+          id="open-profile-modal" 
+          class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center border border-slate-200 transition active:scale-95 shadow-xs"
+          aria-label="Open profile and inquiries"
+        >
+          <Icon name="user" class="w-5 h-5 text-slate-700" />
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Wireframe Section 2: Brand Switcher Tabs (QuickyIT vs TANZZZX Studio) -->
+    <div class="mt-2.5 pt-1 border-t border-slate-100">
+      <div class="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-2xl border border-slate-200/80">
+        
+        <!-- Tab 1: QuickyIT -->
+        <button 
+          id="tab-quickyit" 
+          class="brand-tab active flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-2 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all shadow-sm bg-white text-slate-900 border border-emerald-500/30"
+          data-brand="quickyit"
+        >
+          <div class="flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <span class="font-display font-extrabold tracking-tight">⚡ QUICKYIT</span>
+          </div>
+          <span class="text-[10px] sm:text-xs text-slate-500 font-medium truncate max-w-[140px] sm:max-w-none">
+            Quick for every digi serv
+          </span>
+        </button>
+
+        <!-- Tab 2: TANZZZX Studio -->
+        <button 
+          id="tab-tanzzzx" 
+          class="brand-tab flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 py-2 px-2 sm:px-4 rounded-xl font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-slate-900 hover:bg-white/60"
+          data-brand="tanzzzx"
+        >
+          <div class="flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+            <span class="font-display font-extrabold tracking-tight">🏢 TANZZZX STUDIO</span>
+          </div>
+          <span class="text-[10px] sm:text-xs text-slate-500 font-medium truncate max-w-[140px] sm:max-w-none">
+            Real Est. Brand & Mark.
+          </span>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Wireframe Section 3: Animated Search Bar ("Search for (every category) ↑↑ (1 by 1)") -->
+    <div class="mt-2.5">
+      <div class="relative flex items-center">
+        <div class="absolute left-3.5 text-slate-400 pointer-events-none">
+          <Icon name="search" class="w-4 h-4 sm:w-5 sm:h-5 text-slate-400" />
+        </div>
+
+        <input 
+          type="text" 
+          id="service-search-input" 
+          placeholder="Search for 'Ecommerce Website'..." 
+          class="w-full pl-10 pr-10 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl bg-slate-50 hover:bg-slate-100/80 focus:bg-white text-slate-900 text-xs sm:text-sm font-medium border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:outline-none transition-all placeholder:text-slate-400 shadow-inner"
+          autocomplete="off"
+        />
+
+        <button 
+          id="clear-search-btn" 
+          class="hidden absolute right-3 text-slate-400 hover:text-slate-600 p-1 rounded-full transition"
+          aria-label="Clear search"
+        >
+          <Icon name="x" class="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+
+  </div>
+</header>

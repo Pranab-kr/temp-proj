@@ -1,0 +1,43 @@
+---
+import Icon from './Icon.astro';
+---
+
+<!-- Floating Bottom Cart Bar (like Blinkit / Licious) -->
+<div 
+  id="floating-cart-bar" 
+  class="fixed bottom-3 inset-x-3 sm:inset-x-auto sm:right-6 sm:bottom-6 sm:w-96 z-50 transform translate-y-32 transition-transform duration-300 ease-out pointer-events-none"
+>
+  <div class="pointer-events-auto bg-slate-900 text-white p-3 sm:p-3.5 rounded-2xl shadow-2xl border border-slate-700/80 backdrop-blur-md flex items-center justify-between gap-3">
+    
+    <!-- Left: Cart Count & Starting Estimate -->
+    <div class="flex items-center gap-3">
+      <div class="relative w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center shadow-md shadow-emerald-500/30">
+        <Icon name="shopping-bag" class="w-5 h-5 text-white" />
+        <span id="cart-bar-badge" class="absolute -top-1 -right-1 w-5 h-5 bg-rose-500 text-white text-[10px] font-black rounded-full flex items-center justify-center border-2 border-slate-900 animate-pulse">
+          1
+        </span>
+      </div>
+
+      <div>
+        <div class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-400">
+          <span id="cart-bar-count">1 SERVICE</span> ADDED
+        </div>
+        <div class="flex items-baseline gap-1 text-white">
+          <span class="text-xs text-slate-400">Est.</span>
+          <span id="cart-bar-total" class="font-display font-black text-base sm:text-lg tracking-tight text-white">₹13,999</span>
+          <span class="text-[9px] text-slate-400">(Starting)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: View Cart & Schedule CTA Button -->
+    <button 
+      id="open-cart-drawer-btn" 
+      class="flex items-center gap-1.5 px-3.5 sm:px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 text-white font-extrabold text-xs sm:text-sm shadow-md shadow-emerald-500/20 active:scale-95 transition-all"
+    >
+      <span>View Cart</span>
+      <Icon name="arrow-right" class="w-4 h-4" />
+    </button>
+
+  </div>
+</div>

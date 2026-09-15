@@ -1,0 +1,237 @@
+---
+import Icon from './Icon.astro';
+---
+
+<!-- Cart & Schedule Booking Drawer -->
+<div id="cart-drawer-backdrop" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs transition-opacity duration-300 opacity-0 pointer-events-none">
+  <div 
+    id="cart-drawer-panel" 
+    class="fixed inset-y-0 right-0 max-w-lg w-full bg-white shadow-2xl flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-out z-50 overflow-hidden"
+  >
+    <!-- Drawer Header -->
+    <div class="px-5 py-4 border-b border-slate-200 bg-slate-50/80 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
+          <Icon name="shopping-bag" class="w-4 h-4" />
+        </div>
+        <div>
+          <h3 class="font-display font-extrabold text-slate-900 text-base leading-tight">Your Digital Cart</h3>
+          <p class="text-[11px] text-slate-500 font-medium">Fast Booking & Direct Admin WhatsApp Connect</p>
+        </div>
+      </div>
+
+      <button 
+        id="close-cart-drawer-btn" 
+        class="w-8 h-8 rounded-xl bg-slate-200/60 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition active:scale-95"
+        aria-label="Close cart drawer"
+      >
+        <Icon name="x" class="w-4 h-4" />
+      </button>
+    </div>
+
+    <!-- Drawer Scrollable Content -->
+    <div class="flex-1 overflow-y-auto px-5 py-4 space-y-5 no-scrollbar">
+      
+      <!-- Empty Cart State -->
+      <div id="cart-empty-state" class="py-12 text-center space-y-3">
+        <div class="w-16 h-16 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto">
+          <Icon name="shopping-cart" class="w-8 h-8" />
+        </div>
+        <h4 class="font-display font-bold text-slate-800 text-base">Your Cart is Empty</h4>
+        <p class="text-xs text-slate-500 max-w-xs mx-auto">Browse our fast digital services or real estate 3D packages and tap "Book +" to add them.</p>
+        <button 
+          id="cart-browse-services-btn" 
+          class="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold shadow-sm hover:bg-emerald-700 transition"
+        >
+          Explore Services
+        </button>
+      </div>
+
+      <!-- Cart Items List Container -->
+      <div id="cart-items-container" class="space-y-3">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Add-Ons Section (Price goes more when in cart as requested by user) -->
+      <div id="cart-addons-section" class="pt-3 border-t border-slate-200 space-y-2.5">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-black uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+            <Icon name="sparkles" class="w-3.5 h-3.5 text-emerald-600" />
+            Recommended Service Boosts
+          </span>
+          <span class="text-[10px] text-slate-400">Optional Add-ons</span>
+        </div>
+
+        <div class="space-y-2">
+          <!-- Addon 1 -->
+          <label class="flex items-start gap-2.5 p-2.5 rounded-xl border border-slate-200 hover:border-emerald-300 bg-slate-50/60 cursor-pointer transition">
+            <input type="checkbox" id="addon-express" class="addon-checkbox mt-1 w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300" data-name="⚡ 48H Express Priority Sprint" data-price="2999" />
+            <div class="flex-1 text-xs">
+              <div class="flex items-center justify-between font-bold text-slate-800">
+                <span>⚡ 48-Hour Priority Delivery Sprint</span>
+                <span class="text-emerald-700">+₹2,999</span>
+              </div>
+              <p class="text-[11px] text-slate-500">Dedicated sprint team allocated immediately upon confirmation.</p>
+            </div>
+          </label>
+
+          <!-- Addon 2 -->
+          <label class="flex items-start gap-2.5 p-2.5 rounded-xl border border-slate-200 hover:border-emerald-300 bg-slate-50/60 cursor-pointer transition">
+            <input type="checkbox" id="addon-support" class="addon-checkbox mt-1 w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300" data-name="🛡️ 1-Year Priority Support & Maintenance" data-price="4999" />
+            <div class="flex-1 text-xs">
+              <div class="flex items-center justify-between font-bold text-slate-800">
+                <span>🛡️ 1-Year Priority Tech Maintenance</span>
+                <span class="text-emerald-700">+₹4,999</span>
+              </div>
+              <p class="text-[11px] text-slate-500">Cloud backups, uptime monitoring, bug fixes and monthly text updates.</p>
+            </div>
+          </label>
+
+          <!-- Addon 3 -->
+          <label class="flex items-start gap-2.5 p-2.5 rounded-xl border border-slate-200 hover:border-emerald-300 bg-slate-50/60 cursor-pointer transition">
+            <input type="checkbox" id="addon-growth" class="addon-checkbox mt-1 w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300" data-name="📈 Dedicated Growth & Meta Ads Setup" data-price="3499" />
+            <div class="flex-1 text-xs">
+              <div class="flex items-center justify-between font-bold text-slate-800">
+                <span>📈 Lead Funnel & Meta Ads Audit</span>
+                <span class="text-emerald-700">+₹3,499</span>
+              </div>
+              <p class="text-[11px] text-slate-500">Pixel installation, high-CTR ad angles & audience targeting blueprints.</p>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Pricing Notice Card -->
+      <div id="cart-pricing-notice" class="p-3 bg-emerald-50/70 border border-emerald-200/80 rounded-xl text-xs space-y-1">
+        <div class="flex items-center gap-1.5 font-bold text-emerald-800">
+          <Icon name="shield-check" class="w-4 h-4 text-emerald-600" />
+          <span>Starting Price Estimate Policy</span>
+        </div>
+        <p class="text-[11px] text-emerald-900/80 leading-relaxed">
+          The total shown is the starting baseline. Since our services are custom-built for every business owner, exact features, milestones, and final commercials are locked transparently during our direct WhatsApp consultation call with zero surprise costs.
+        </p>
+      </div>
+
+      <!-- User Consultation & Booking Details Form -->
+      <div id="cart-booking-form" class="pt-3 border-t border-slate-200 space-y-3">
+        <h4 class="text-xs font-black uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+          <Icon name="calendar" class="w-3.5 h-3.5 text-emerald-600" />
+          Schedule Onboarding Call Details
+        </h4>
+
+        <div class="space-y-2.5">
+          <!-- Client Name -->
+          <div>
+            <label for="cart-input-name" class="block text-[11px] font-bold text-slate-700 mb-1">
+              Your Full Name <span class="text-rose-500">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="cart-input-name" 
+              placeholder="e.g. Rahul Sen / Priya Sharma" 
+              class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:outline-none"
+              required
+            />
+          </div>
+
+          <!-- WhatsApp Number -->
+          <div>
+            <label for="cart-input-phone" class="block text-[11px] font-bold text-slate-700 mb-1">
+              WhatsApp Phone Number <span class="text-rose-500">*</span>
+            </label>
+            <div class="flex rounded-xl border border-slate-200 overflow-hidden focus-within:border-emerald-500 focus-within:ring-2 focus-within:ring-emerald-500/20">
+              <span class="bg-slate-100 text-slate-600 px-2.5 py-2 text-xs font-semibold flex items-center border-r border-slate-200">
+                🇮🇳 +91
+              </span>
+              <input 
+                type="tel" 
+                id="cart-input-phone" 
+                placeholder="98300 12345" 
+                class="w-full px-3 py-2 text-xs focus:outline-none"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- City & Hub -->
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label for="cart-input-city" class="block text-[11px] font-bold text-slate-700 mb-1">
+                Your City
+              </label>
+              <input 
+                type="text" 
+                id="cart-input-city" 
+                value="Kolkata" 
+                class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:border-emerald-500 focus:outline-none"
+              />
+            </div>
+
+            <!-- Preferred Time Slot -->
+            <div>
+              <label for="cart-input-slot" class="block text-[11px] font-bold text-slate-700 mb-1">
+                Preferred Call Slot
+              </label>
+              <select 
+                id="cart-input-slot" 
+                class="w-full px-2.5 py-2 text-xs rounded-xl border border-slate-200 bg-white focus:border-emerald-500 focus:outline-none font-medium"
+              >
+                <option value="Urgent (Within 15-30 Mins)">⚡ Urgent (15-30 Mins)</option>
+                <option value="Morning (10:00 AM - 1:00 PM)">🌅 Morning (10 AM - 1 PM)</option>
+                <option value="Afternoon (2:00 PM - 5:00 PM)" selected>☀️ Afternoon (2 PM - 5 PM)</option>
+                <option value="Evening (6:00 PM - 9:00 PM)">🌙 Evening (6 PM - 9 PM)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Project Requirements / Notes -->
+          <div>
+            <label for="cart-input-notes" class="block text-[11px] font-bold text-slate-700 mb-1">
+              Project Brief / Custom Requirements (Optional)
+            </label>
+            <textarea 
+              id="cart-input-notes" 
+              rows="2" 
+              placeholder="e.g. We are a retail brand in Kolkata needing an e-commerce website with fast UPI checkout..." 
+              class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:outline-none"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Drawer Footer: Estimated Price & WhatsApp Submit Button -->
+    <div id="cart-drawer-footer" class="p-4 border-t border-slate-200 bg-slate-50 space-y-3">
+      <!-- Price Breakdown Summary -->
+      <div class="space-y-1 text-xs">
+        <div class="flex justify-between text-slate-500">
+          <span>Base Services Starting Price</span>
+          <span id="drawer-base-total" class="font-semibold text-slate-700">₹0</span>
+        </div>
+        <div class="flex justify-between text-slate-500">
+          <span>Selected Add-ons</span>
+          <span id="drawer-addons-total" class="font-semibold text-slate-700">₹0</span>
+        </div>
+        <div class="flex justify-between text-sm font-black text-slate-900 pt-1 border-t border-slate-200">
+          <span>Total Starting Estimate</span>
+          <span id="drawer-grand-total" class="text-base text-emerald-700 font-display">₹0</span>
+        </div>
+      </div>
+
+      <!-- WhatsApp Redirection Button (Crucial user requirement) -->
+      <button 
+        id="cart-whatsapp-submit-btn" 
+        class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-extrabold text-sm shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2 transition active:scale-[0.98]"
+      >
+        <Icon name="whatsapp" class="w-5 h-5 text-white" />
+        <span>Book & Send to Admin WhatsApp 💬</span>
+      </button>
+
+      <p class="text-center text-[10px] text-slate-400 font-medium">
+        Redirects directly to QuickyIT Admin on WhatsApp with your booking details.
+      </p>
+    </div>
+
+  </div>
+</div>

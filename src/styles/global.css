@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary-green: #52c41a;
+    --primary-green-hover: #45a815;
+    --primary-green-light: #f0fdf4;
+    --primary-green-glow: rgba(82, 196, 26, 0.25);
+    --speed-blue: #0070f3;
+    --speed-blue-hover: #0060d4;
+    --speed-blue-light: #eff6ff;
+    --dark-surface: #0b0f17;
+    --card-surface: #ffffff;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Hide scrollbar for tabs */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Phone Frame Mockup Mode */
+.phone-frame-active {
+  max-width: 440px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 24px !important;
+  margin-bottom: 32px !important;
+  border-radius: 44px !important;
+  border: 10px solid #1e293b !important;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+  overflow: hidden !important;
+  position: relative !important;
+  background-color: #f8fafc !important;
+}
+
+@media (max-width: 640px) {
+  .phone-frame-active {
+    max-width: 100% !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+}

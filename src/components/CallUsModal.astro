@@ -1,0 +1,76 @@
+---
+import Icon from './Icon.astro';
+---
+
+<!-- Call Us / Know More Modal -->
+<div id="call-modal-backdrop" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-3 sm:p-4">
+  <div 
+    id="call-modal-card" 
+    class="bg-white rounded-3xl max-w-sm w-full shadow-2xl border border-slate-200 overflow-hidden transform scale-95 transition-transform duration-300 ease-out p-5 space-y-4"
+  >
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
+          <Icon name="phone" class="w-5 h-5" />
+        </div>
+        <div>
+          <h3 class="font-display font-black text-slate-900 text-base leading-tight">Connect Instantly</h3>
+          <p class="text-[11px] text-slate-500">QuickyIT & Tanzzzx Studio Support</p>
+        </div>
+      </div>
+
+      <button 
+        id="close-call-modal-btn" 
+        class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition active:scale-95"
+        aria-label="Close modal"
+      >
+        <Icon name="x" class="w-4 h-4" />
+      </button>
+    </div>
+
+    <!-- Contact Cards -->
+    <div class="space-y-2.5">
+      <!-- Direct WhatsApp Action -->
+      <a 
+        href="https://wa.me/919876543210?text=Hi%20QuickyIT%20Team!%20I%20want%20to%20know%20more%20about%20your%20digital%20and%203D%20services." 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="flex items-center justify-between p-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-emerald-600/20 transition active:scale-95"
+      >
+        <div class="flex items-center gap-2.5">
+          <Icon name="whatsapp" class="w-5 h-5 text-white" />
+          <div class="text-left">
+            <div>Chat on WhatsApp</div>
+            <div class="text-[10px] text-emerald-100 font-normal">Typical reply time: 2 mins</div>
+          </div>
+        </div>
+        <Icon name="arrow-right" class="w-4 h-4 text-emerald-200" />
+      </a>
+
+      <!-- Direct Phone Call Action -->
+      <a 
+        href="tel:+919876543210" 
+        class="flex items-center justify-between p-3.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm shadow-md transition active:scale-95"
+      >
+        <div class="flex items-center gap-2.5">
+          <Icon name="phone" class="w-4 h-4 text-white" />
+          <div class="text-left">
+            <div>Direct Phone Call</div>
+            <div class="text-[10px] text-slate-400 font-normal">+91 98765 43210 (Mon-Sat, 9am-9pm)</div>
+          </div>
+        </div>
+        <Icon name="arrow-right" class="w-4 h-4 text-slate-400" />
+      </a>
+    </div>
+
+    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/80 text-[11px] text-slate-600 space-y-1">
+      <div class="font-bold text-slate-800 flex items-center gap-1">
+        <Icon name="shield-check" class="w-3.5 h-3.5 text-emerald-600" />
+        <span>A ReachX Group Unit Assurance</span>
+      </div>
+      <p class="text-[10px] text-slate-500 leading-relaxed">
+        Speak directly with experienced project directors, not junior telemarketers. We analyze your tech requirements and recommend the most cost-effective package.
+      </p>
+    </div>
+  </div>
+</div>

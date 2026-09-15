@@ -1,0 +1,68 @@
+---
+import Icon from './Icon.astro';
+import { QUICKYIT_CATEGORIES, TANZZZX_CATEGORIES } from '../data/services';
+---
+
+<div class="py-2 px-3 sm:px-6 max-w-7xl mx-auto">
+  <div class="relative flex items-center">
+    <!-- Scroll Left Arrow Button -->
+    <button 
+      id="cat-scroll-left" 
+      class="hidden md:flex absolute -left-3 z-10 w-7 h-7 rounded-full bg-white shadow-md border border-slate-200 text-slate-600 hover:text-emerald-600 items-center justify-center transition active:scale-95"
+      aria-label="Scroll left"
+    >
+      <Icon name="chevron-left" class="w-4 h-4" />
+    </button>
+
+    <!-- Category Pills Container -->
+    <div 
+      id="category-strip-container" 
+      class="flex items-center gap-2 overflow-x-auto no-scrollbar scroll-smooth py-1 px-1 w-full"
+    >
+      <!-- QuickyIT Categories -->
+      <div id="quickyit-categories-wrap" class="flex items-center gap-2 shrink-0">
+        {QUICKYIT_CATEGORIES.map((cat, idx) => (
+          <button
+            class={`category-pill shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all active:scale-95 border ${
+              idx === 0
+                ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm shadow-emerald-600/20 active-pill'
+                : 'bg-white text-slate-700 hover:bg-slate-50 border-slate-200/90 hover:border-slate-300 shadow-2xs'
+            }`}
+            data-brand="quickyit"
+            data-category={cat.id}
+          >
+            <Icon name={cat.icon} class="w-3.5 h-3.5" />
+            <span class="whitespace-nowrap">{cat.name}</span>
+          </button>
+        ))}
+      </div>
+
+      <!-- TANZZZX Categories (hidden initially until tab switched) -->
+      <div id="tanzzzx-categories-wrap" class="hidden items-center gap-2 shrink-0">
+        {TANZZZX_CATEGORIES.map((cat, idx) => (
+          <button
+            class={`category-pill shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all active:scale-95 border ${
+              idx === 0
+                ? 'bg-amber-500 text-slate-950 border-amber-500 shadow-sm shadow-amber-500/20 active-pill'
+                : 'bg-white text-slate-700 hover:bg-slate-50 border-slate-200/90 hover:border-slate-300 shadow-2xs'
+            }`}
+            data-brand="tanzzzx"
+            data-category={cat.id}
+          >
+            <Icon name={cat.icon} class="w-3.5 h-3.5" />
+            <span class="whitespace-nowrap">{cat.name}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Scroll Right Arrow Button -->
+    <button 
+      id="cat-scroll-right" 
+      class="hidden md:flex absolute -right-3 z-10 w-7 h-7 rounded-full bg-white shadow-md border border-slate-200 text-slate-600 hover:text-emerald-600 items-center justify-center transition active:scale-95"
+      aria-label="Scroll right"
+    >
+      <Icon name="chevron-right" class="w-4 h-4" />
+    </button>
+  </div>
+</div>

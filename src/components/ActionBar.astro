@@ -1,0 +1,46 @@
+---
+import Icon from './Icon.astro';
+---
+
+<div class="px-3 sm:px-6 max-w-7xl mx-auto py-2">
+  <div class="flex items-center justify-between gap-3">
+    
+    <!-- Left Action: Call us / Know More (as per wireframe) -->
+    <button 
+      id="open-call-modal" 
+      class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-xs sm:text-sm font-bold border border-slate-200/90 shadow-2xs hover:border-emerald-300 transition active:scale-95"
+    >
+      <div class="w-6 h-6 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+        <Icon name="phone" class="w-3.5 h-3.5 text-emerald-600" />
+      </div>
+      <div class="text-left">
+        <span class="block text-[10px] text-slate-500 font-semibold uppercase tracking-wider leading-none">Instant Connect</span>
+        <span class="text-slate-800 leading-tight">Call us / Know More</span>
+      </div>
+    </button>
+
+    <!-- Quick Stats / Delivery Badge -->
+    <div class="hidden lg:flex items-center gap-3 text-xs text-slate-600 bg-emerald-50/70 border border-emerald-200/60 px-3 py-2 rounded-xl">
+      <div class="flex items-center gap-1 text-emerald-700 font-bold">
+        <Icon name="zap" class="w-3.5 h-3.5 text-emerald-600" />
+        <span>48-Hour Sprint Available</span>
+      </div>
+      <span class="text-slate-300">|</span>
+      <div class="flex items-center gap-1 text-slate-600 font-medium">
+        <Icon name="shield-check" class="w-3.5 h-3.5 text-emerald-600" />
+        <span>Verified Experts & Direct Admin Chat</span>
+      </div>
+    </div>
+
+    <!-- Right Action: Filters (as per wireframe) -->
+    <button 
+      id="open-filters-modal" 
+      class="flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 text-xs sm:text-sm font-bold border border-slate-200/90 shadow-2xs hover:border-slate-300 transition active:scale-95"
+    >
+      <Icon name="sliders-horizontal" class="w-4 h-4 text-slate-600" />
+      <span>Filters</span>
+      <span id="active-filter-badge" class="hidden w-2 h-2 rounded-full bg-emerald-500"></span>
+    </button>
+
+  </div>
+</div>

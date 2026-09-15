@@ -1,11 +1,113 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import TopNav from '../components/TopNav.astro';
+import CategoryStrip from '../components/CategoryStrip.astro';
+import OffersBanner from '../components/OffersBanner.astro';
+import ActionBar from '../components/ActionBar.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import CartBottomBar from '../components/CartBottomBar.astro';
+import CartDrawer from '../components/CartDrawer.astro';
+import ConsultancyModal from '../components/ConsultancyModal.astro';
+import CitySelectorModal from '../components/CitySelectorModal.astro';
+import CallUsModal from '../components/CallUsModal.astro';
+import FiltersModal from '../components/FiltersModal.astro';
+import ProfileModal from '../components/ProfileModal.astro';
+import Footer from '../components/Footer.astro';
+import Icon from '../components/Icon.astro';
+import { SERVICES_DATA } from '../data/services';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="QuickyIT & TANZZZX Studio | Quick Digital Services & 3D Real Estate | ReachX Group">
+  <!-- Outer Wrapper with App Viewport Container (supports phone toggle and responsive desktop) -->
+  <div id="app-viewport-container" class="min-h-screen bg-slate-50 transition-all duration-300 pb-24">
+    
+    <!-- Top Navigation Header (Location, Free Consultancy, Profile, Brand Tabs, Search Bar) -->
+    <TopNav />
+
+    <!-- Horizontal Category Scroll Strip (All, Website, Ecom, Android, iOS, ERP, CRM, etc.) -->
+    <CategoryStrip />
+
+    <!-- Dynamic Animated Offers Carousel Banner -->
+    <OffersBanner />
+
+    <!-- Action Bar: Call us / Know More & Filters (Matching wireframe) -->
+    <ActionBar />
+
+    <!-- Main Service Cards Feed (Phone-optimized Blinkit / Licious vertical/responsive feed) -->
+    <main class="max-w-7xl mx-auto px-3.5 sm:px-6 py-2">
+      
+      <!-- Section Header with Real-Time Quick Stats -->
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
+          <h2 class="font-display font-black text-sm sm:text-base text-slate-900 tracking-tight">
+            Available Instant Services
+          </h2>
+          <span class="text-[10px] font-bold text-slate-400 bg-slate-200/70 px-2 py-0.5 rounded-full">
+            Starting Price Segment
+          </span>
+        </div>
+
+        <div class="text-[11px] text-slate-500 font-medium hidden sm:block">
+          Tap <strong class="text-emerald-700">"Book +"</strong> to add to cart & checkout directly via WhatsApp
+        </div>
+      </div>
+
+      <!-- Service Cards Grid -->
+      <div 
+        id="services-grid-container" 
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5"
+      >
+        {SERVICES_DATA.map((service) => (
+          <ServiceCard service={service} />
+        ))}
+      </div>
+
+      <!-- No Services Found Fallback -->
+      <div id="no-services-found" class="hidden py-16 text-center space-y-3">
+        <div class="w-14 h-14 rounded-2xl bg-slate-100 text-slate-400 flex items-center justify-center mx-auto">
+          <Icon name="search" class="w-6 h-6" />
+        </div>
+        <h4 class="font-display font-bold text-slate-800 text-sm sm:text-base">No Matching Services Found</h4>
+        <p class="text-xs text-slate-500 max-w-xs mx-auto">
+          Try clearing your search terms or exploring another category above.
+        </p>
+        <button 
+          onclick="document.getElementById('clear-search-btn')?.click();"
+          class="px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-bold shadow-sm hover:bg-emerald-700 transition"
+        >
+          Reset Search Filter
+        </button>
+      </div>
+
+    </main>
+
+    <!-- ReachX Group Unit Footer -->
+    <Footer />
+
+    <!-- Sticky Floating Cart Bar (Blinkit / Licious style) -->
+    <CartBottomBar />
+
+    <!-- Slide-over Checkout Drawer with WhatsApp redirection -->
+    <CartDrawer />
+
+    <!-- Schedule Free Consultancy Modal with WhatsApp redirection -->
+    <ConsultancyModal />
+
+    <!-- City / Location Selector Modal -->
+    <CitySelectorModal />
+
+    <!-- Call Us / Direct Connect Modal -->
+    <CallUsModal />
+
+    <!-- Filters Modal -->
+    <FiltersModal />
+
+    <!-- Profile & Inquiries Drawer -->
+    <ProfileModal />
+
+  </div>
+
+  <!-- Client Script -->
+  <script src="../scripts/app.ts"></script>
 </Layout>

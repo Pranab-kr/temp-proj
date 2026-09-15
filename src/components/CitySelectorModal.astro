@@ -1,0 +1,81 @@
+---
+import Icon from './Icon.astro';
+import { CITIES } from '../data/services';
+---
+
+<!-- City Selector Modal -->
+<div id="city-modal-backdrop" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs transition-opacity duration-300 opacity-0 pointer-events-none flex items-center justify-center p-3 sm:p-4">
+  <div 
+    id="city-modal-card" 
+    class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-200 overflow-hidden transform scale-95 transition-transform duration-300 ease-out"
+  >
+    <!-- Modal Header -->
+    <div class="px-5 py-4 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
+          <Icon name="map-pin" class="w-4 h-4" />
+        </div>
+        <div>
+          <h3 class="font-display font-extrabold text-slate-900 text-sm sm:text-base leading-tight">Select Your City</h3>
+          <p class="text-[11px] text-slate-500 font-medium">Fast on-demand digital delivery in your region</p>
+        </div>
+      </div>
+
+      <button 
+        id="close-city-modal-btn" 
+        class="w-8 h-8 rounded-full bg-slate-200/60 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition active:scale-95"
+        aria-label="Close modal"
+      >
+        <Icon name="x" class="w-4 h-4" />
+      </button>
+    </div>
+
+    <!-- Search City Input -->
+    <div class="p-4 border-b border-slate-100">
+      <div class="relative">
+        <div class="absolute left-3 top-2.5 text-slate-400 pointer-events-none">
+          <Icon name="search" class="w-4 h-4" />
+        </div>
+        <input 
+          type="text" 
+          id="city-search-input" 
+          placeholder="Search city (e.g. Kolkata, Mumbai, Bangalore)..." 
+          class="w-full pl-9 pr-3 py-2 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:border-emerald-500 focus:outline-none"
+        />
+      </div>
+    </div>
+
+    <!-- City List -->
+    <div class="p-4 max-h-80 overflow-y-auto space-y-1.5 no-scrollbar" id="city-list-container">
+      {CITIES.map((city) => (
+        <button 
+          class="city-option-btn w-full p-2.5 rounded-xl border border-slate-100 hover:border-emerald-200 hover:bg-emerald-50/50 flex items-center justify-between text-left transition group"
+          data-city-id={city.id}
+          data-city-name={city.name}
+        >
+          <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-lg bg-slate-100 group-hover:bg-emerald-100 text-slate-600 group-hover:text-emerald-700 flex items-center justify-center transition">
+              <Icon name="map-pin" class="w-3.5 h-3.5" />
+            </div>
+            <div>
+              <div class="text-xs font-bold text-slate-800 group-hover:text-emerald-800">
+                {city.name}
+              </div>
+              <div class="text-[10px] text-slate-400">
+                {city.state} • <span class="text-slate-500 font-medium">{city.hub}</span>
+              </div>
+            </div>
+          </div>
+
+          <span class="city-check-icon hidden text-emerald-600 font-bold text-xs">
+            <Icon name="check" class="w-4 h-4" />
+          </span>
+        </button>
+      ))}
+    </div>
+
+    <div class="p-3 bg-slate-50 border-t border-slate-100 text-center text-[11px] text-slate-500">
+      ⚡ Can't find your city? We provide global remote delivery across 40+ countries.
+    </div>
+  </div>
+</div>
